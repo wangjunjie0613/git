@@ -7,6 +7,7 @@ Research preparation scaffold. No real-image detection performance has been esta
 - [Eight-paper related-work table](docs/related_work.md) / [CSV](docs/related_work.csv)
 - [Seven-day and December milestones](docs/milestones.md)
 - [Data audit protocol](docs/data_protocol.md)
+- [Resource availability](docs/resources.md)
 - [LaTeX source](paper/main.tex) / [Compiled draft PDF](paper/main.pdf)
 - [Agent/research instructions](AGENTS.md)
 

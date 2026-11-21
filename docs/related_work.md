@@ -1,0 +1,14 @@
+# Related work: verified-page first draft
+
+Eight original arXiv abstract pages were opened on 2026-11-21. This verifies source identity and access, not full-text experimental reproduction. Limitations below are applicability assessments, not claims that the papers are defective. Exact metric settings and some dataset lists remain explicitly pending full-text review. Add weld-specific and recent 2026 papers before final submission; this is not an exhaustive novelty search.
+
+| 简称 | 标题 | arXiv ID | 任务 | 数据 | 方法 | 指标 | 局限/本课题适配边界 | 我的改进点（待验证） | 链接 | 核验日期 | 核验范围 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| PatchCore | Towards Total Recall in Industrial Anomaly Detection | 2106.08265 | 正常训练的工业异常检测/定位 | MVTec AD；其他数据待全文补录 | 正常patch记忆库与代表性采样 | 图像/像素AUROC等；精确评测设置待全文 | 不能直接等同未知实例框定位和整片误报预算 | 正常基线；增加焊缝背景条件和实例评估 | https://arxiv.org/abs/2106.08265 | 2026-11-21 | 原始摘要页可打开；题名/作者/摘要已核；未完成逐篇全文复现核验 |
+| PaDiM | PaDiM: a Patch Distribution Modeling Framework for Anomaly Detection and Localization | 2011.08785 | 单类异常检测/定位 | MVTec AD、STC | 局部预训练特征的多元高斯分布 | 检测/定位指标；细节待全文 | 空间条件与非对齐原片适配需要检验 | 作为简单概率正常模型对照 | https://arxiv.org/abs/2011.08785 | 2026-11-21 | 原始摘要页可打开；题名/作者/摘要已核；未完成逐篇全文复现核验 |
+| DRAEM | DRAEM -- A discriminatively trained reconstruction embedding for surface anomaly detection | 2108.07610 | 表面异常定位 | MVTec AD、DAGM | 重建与判别联合表征；模拟异常训练 | 检测/定位指标；细节待全文 | 模拟表面异常不等同射线物理缺陷 | 作为合成异常路线对照；不以合成数据替代真实测试 | https://arxiv.org/abs/2108.07610 | 2026-11-21 | 原始摘要页可打开；题名/作者/摘要已核；未完成逐篇全文复现核验 |
+| SimpleNet | SimpleNet: A Simple Network for Image Anomaly Detection and Localization | 2303.15140 | 工业异常检测/定位 | MVTec AD；单类新颖性任务 | 特征适配、特征噪声合成异常、判别器 | AUROC、FPS；设置待全文 | 未知类别识别和背景条件不是该摘要的主任务 | 检验轻量判别器是否已足够 | https://arxiv.org/abs/2303.15140 | 2026-11-21 | 原始摘要页可打开；题名/作者/摘要已核；未完成逐篇全文复现核验 |
+| WinCLIP | WinCLIP: Zero-/Few-Shot Anomaly Classification and Segmentation | 2303.14814 | 零样本/少量正常样本异常分类与分割 | MVTec AD、VisA | 文本模板与多尺度窗口特征；正常参考扩展 | 分类/分割AUROC | 视觉语言预训练和提示信息需单列 | 若采用提示模型，披露信息预算并做独立比较 | https://arxiv.org/abs/2303.14814 | 2026-11-21 | 原始摘要页可打开；题名/作者/摘要已核；未完成逐篇全文复现核验 |
+| ORE | Towards Open World Object Detection | 2103.02603 | 未知目标发现与增量学习 | 目标检测基准具体划分待全文核对 | 对比聚类与能量未知识别 | 未知检测及已知检测指标；细节待全文 | 增量开放世界协议与本课题固定留类协议不同 | 借鉴实例未知评价；校准信息需重新审计 | https://arxiv.org/abs/2103.02603 | 2026-11-21 | 原始摘要页可打开；题名/作者/摘要已核；未完成逐篇全文复现核验 |
+| DRA | Catching Both Gray and Black Swans: Open-set Supervised Anomaly Detection | 2203.14506 | 开放集监督异常检测 | 九个真实异常检测数据集；清单待全文 | 已见、伪异常和残差异常的解耦表示 | 开放集异常检测指标；细节待全文 | 需额外验证完整焊缝上的实例定位 | 作为已知异常辅助方法的近邻工作 | https://arxiv.org/abs/2203.14506 | 2026-11-21 | 原始摘要页可打开；题名/作者/摘要已核；未完成逐篇全文复现核验 |
+| DPDL | Distribution Prototype Diffusion Learning for Open-set Supervised Anomaly Detection | 2502.20981 | 开放集监督异常检测 | 九个公开数据集；清单待全文 | 高斯原型、扩散分布变换与特征分散 | 异常检测指标；细节待全文 | 不能把普通原型距离称为DPDL复现；CVPR版与arXiv v3需区分 | 研究上下文正常分布与完整原片风险，需对比原型方法 | https://arxiv.org/abs/2502.20981 | 2026-11-21 | 原始摘要页可打开；题名/作者/摘要已核；未完成逐篇全文复现核验 |
