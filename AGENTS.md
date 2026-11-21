@@ -44,7 +44,6 @@
 - `paper/tables/`：论文表格位置。
 - 编译PDF与LaTeX中间文件仅在本地生成，不提交到GitHub。
 
-论文每个章节所需证据见`docs/RESEARCH_MAP.md`。
 
 ## 配置与可复现性
 
