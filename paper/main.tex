@@ -1,76 +1,82 @@
 % !TeX program = xelatex
-% Build with LaTeX Workshop (XeLaTeX) or:
-% xelatex main.tex -> bibtex main -> xelatex main.tex -> xelatex main.tex
 \documentclass[UTF8,a4paper,12pt]{ctexart}
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{booktabs}
-\usepackage[numbers,sort&compress]{natbib}
-\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage[colorlinks=true,citecolor=blue]{hyperref}
 
 \title{面向复杂正常背景的开放集焊缝缺陷实例定位}
-\author{作者与单位待填写}
+\author{作者：王俊杰\\单位：北京理工大学}
 \date{\today}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-\noindent\textbf{问题：}完整焊缝射线图中的复杂正常结构可能产生误报，闭集模型难以处理训练未见的缺陷类别。\\
-\textbf{数据：}拟使用按物理焊缝可追溯的射线原片；最终样本范围与标签完整性待审核。\\
-\textbf{方法：}拟研究类别无关候选、背景条件化正常建模和已知/未知拒识。\\
-\textbf{预期指标：}在冻结验证误报预算下评价未知实例召回，并报告实际测试误报/原片、已知类性能与候选覆盖。\\
-\textbf{状态：}本文为骨架，尚无真实实验结果；结果和结论待实测后填写。
+\noindent\textbf{问题：}完整焊缝射线图中的复杂正常结构可能造成误报，闭集模型难以处理训练时未见的缺陷类别。
+
+\noindent\textbf{数据：}拟使用可追溯的焊缝射线图像；具体范围和标注情况待审计。
+
+\noindent\textbf{方法：}拟研究类别无关候选生成、背景条件化正常建模和已知/未知拒识。
+
+\noindent\textbf{预期指标：}未知缺陷实例召回、误报/原片、已知类检测性能和候选覆盖率。
+
+\noindent\textbf{当前状态：}研究计划骨架，尚无真实实验结果。
 \end{abstract}
 
-\noindent\textbf{关键词：}焊缝射线检测；开放集识别；异常定位；复杂正常背景
+\noindent\textbf{关键词：}焊缝检测；开放集识别；异常定位；复杂背景
 
 \section{引言}
-说明应用背景、研究问题、任务定义和由真实结果支持的贡献。
+介绍研究背景、问题定义、研究目标和可检验假设。
 
 \section{相关工作}
-综述焊缝射线缺陷检测、工业异常定位、开放集检测和背景建模。PatchCore是正常图像特征记忆库异常定位的代表性基础方法之一\citep{roth2022patchcore}。
+综述焊缝射线检测、工业异常定位和开放集检测。
+PatchCore 使用正常图像的局部特征记忆库进行异常检测与定位
+\cite{roth2022patchcore}。
 
 \section{数据与实验协议}
-说明数据授权与来源、类别家族映射、专家标注、完整正常片审阅、按物理工件/焊缝分组的留类划分及防泄漏规则。
+说明数据来源、标签映射、按焊缝分组的训练/验证/测试划分和防泄漏措施。
 
 \section{方法}
-描述类别无关候选生成、区域特征、背景条件化正常分布、异常判定与未知拒识。
+描述类别无关候选、区域特征、背景条件建模和未知拒识。
 
 \begin{figure}[htbp]
 \centering
-\fbox{\parbox[c][3.2cm][c]{0.86\linewidth}{\centering
-完整原片 $\rightarrow$ 类别无关候选 $\rightarrow$ 区域特征\\[0.5em]
-可用背景条件 $\rightarrow$ 正常/异常评分 $\rightarrow$ 已知/未知决策\\[0.5em]
-原片坐标还原与实例级评估}}
-\caption{研究流程占位图，后续替换为经实验核实的系统图。}
+\fbox{\parbox[c][3.5cm][c]{0.85\linewidth}{
+\centering
+完整射线原片 $\rightarrow$ 类别无关候选 $\rightarrow$ 区域特征\\[0.6em]
+背景条件 $\rightarrow$ 正常/异常评分 $\rightarrow$ 已知/未知判断\\[0.6em]
+原片坐标还原与实例评估
+}}
+\caption{拟议方法流程占位图，后续替换为正式图。}
 \label{fig:framework}
 \end{figure}
 
 \section{实验设计}
-描述公平基线、候选预算、阈值冻结、指标、消融和簇级统计。
+说明对比方法、候选预算、阈值校准和统计分析。
 
 \section{结果}
-\textbf{待真实实验完成后填写。} 不能用模拟软件检查、预期目标或计划数值替代实测结果。
+真实实验完成后填写，不要把模拟结果写成实测结果。
 
 \begin{table}[htbp]
 \centering
-\caption{主要结果表占位}
+\caption{主要结果占位}
 \begin{tabular}{lccc}
 \toprule
-方法 & 未知实例召回 & 实际误报/原片 & 已知类mAP \\
+方法 & 未知实例召回 & 误报/原片 & 已知类 mAP \\
 \midrule
-全局正常基线 & 待实测 & 待实测 & 待实测 \\
-背景条件方法 & 待实测 & 待实测 & 待实测 \\
+全局正常基线 & 待实验 & 待实验 & 待实验 \\
+背景条件方法 & 待实验 & 待实验 & 待实验 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \section{讨论}
-分析主要发现、失败案例、数据偏差、外部泛化和研究限制。
+分析结果、失败案例、数据限制和适用范围。
 
 \section{结论}
-只总结当前真实实验所支持的结论。
+根据真实实验结果总结工作和结论。
 
-\bibliographystyle{plainnat}
+\bibliographystyle{plain}
 \bibliography{references}
+
 \end{document}
