@@ -1,28 +1,28 @@
-# 开放集焊缝缺陷定位代码仓库
+# 开放集焊缝缺陷定位研究
 
-本仓库保留代码、配置示例和研究协作说明。组会课题表、相关工作表、计划和论文材料已从当前版本移除。
+研究目标：在复杂正常背景下，对训练未见的焊缝缺陷进行实例定位，并控制完整原片上的误报。
 
-## 当前目录
+本仓库是公开代码骨架，包含实验协议、数据清单校验入口和配置示例。真实数据、文献表、论文正文/PDF、实验计划及结果另行在本地或受控环境维护；本仓库不包含任何工业原图或内部报告。
 
-- `AGENTS.md`：研究目标、数据路径约定、代码入口和论文模板位置说明。
-- `scripts/inventory.py`：本地文件清点，不上传数据。
-- `scripts/environment_report.py`：采集基本Python/GPU环境信息。
-- `config/experiment.example.json`：实验配置示例，尚未用于真实训练。
-- `.gitignore`：忽略私有数据、结果、权重和本地材料。
+## 开始
 
-## 运行入口
-
-先在本地设置 `WELD_DATA_ROOT` 为实际数据目录，再执行：
+1. 阅读 [AGENTS.md](AGENTS.md)，了解研究边界、数据路径和代码入口。
+2. 复制 `config/experiment.example.json` 为本地实验配置，并按本机环境填写。
+3. 数据通过环境变量 `WELD_DATA_ROOT` 指向，路径不要写入公开配置或提交。
+4. 安装 Python 3.10 或以上版本，运行：
 
 ```bash
-python scripts/inventory.py --root "$WELD_DATA_ROOT" --out data/private/inventory.csv
-python scripts/environment_report.py --out runs/environment.json
+python scripts/validate_manifest.py data/manifests/example.csv
 ```
 
-两个脚本仅依赖Python标准库。真实图像训练与推理尚未实现。
+校验脚本只检查清单格式和分组泄漏，不读取图像、不训练模型，也不判断标签正确性。
 
-## 文档与论文
+## 目录约定
 
-实验文档和LaTeX材料由用户在本地或单独的私有Git仓库中管理，不放入当前公开仓库。
-论文模板路径待用户确定；当前仓库不包含论文模板。
-公开仓库禁止提交工业原图、内部报告、私有清单和凭据。
+- `config/`：公开、无敏感信息的配置示例。
+- `data/raw/`、`data/annotations/`、`data/metadata/`：受控环境的本地数据目录；内容被Git忽略。
+- `data/manifests/`：数据划分清单。公开仓库仅保留字段示例，不提交真实样本ID。
+- `scripts/`：数据审计与实验代码入口。
+- 论文材料放在独立本地写作仓库，不放到本仓库。
+
+所有模型、候选生成和正式评估仍待实现。不得把合成软件检查或计划值当作真实实验结果。

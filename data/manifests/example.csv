@@ -1,0 +1,3 @@
+image_id,specimen_id,weld_id,split,annotation_status
+EXAMPLE_IMAGE_001,EXAMPLE_SPECIMEN_001,EXAMPLE_WELD_001,train,reviewed
+EXAMPLE_IMAGE_002,EXAMPLE_SPECIMEN_002,EXAMPLE_WELD_002,val,complete_negative

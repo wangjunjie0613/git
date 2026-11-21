@@ -1,24 +1,40 @@
-__pycache__/
-*.pyc
-.venv/
+# Private/local data: never commit
+/data/raw/**
+/data/annotations/**
+/data/metadata/**
+/data/manifests/**
+!/data/raw/.gitkeep
+!/data/annotations/.gitkeep
+!/data/metadata/.gitkeep
+!/data/manifests/.gitkeep
+config/local*
 .env
-config/local.*
-data/private/
-runs/
+.env.*
+
+# Generated outputs and model artifacts
+/runs/
+/checkpoints/
+/outputs/
 *.pt
 *.pth
 *.ckpt
+*.onnx
+*.npz
+*.npy
 *.dcm
 *.tif
 *.tiff
-paper/*.aux
-paper/*.bbl
-paper/*.blg
-paper/*.log
-paper/*.out
-paper/*.toc
+*.png
+*.jpg
+*.jpeg
 
-# Documents and paper materials stay outside this public repository.
-/docs/
-/paper/
-/meeting_materials/
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Editors
+.vscode/
+.idea/

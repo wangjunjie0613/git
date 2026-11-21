@@ -1,30 +1,46 @@
-# Research guidance
+# 项目说明与协作约定
 
-## Goal
-Study open-set weld defect instance localization under complex normal backgrounds. Findings are hypotheses until verified on real data.
+## 研究目标
 
-## Data and paths
-- Resolve the private image/annotation root from `WELD_DATA_ROOT`; no actual server path is published.
-- Write private inventories and annotations to `data/private/`; outputs to `runs/`.
-- Public repository: do not commit industrial images, reports, client names, private manifests, credentials or trained industrial weights.
-- A local inventory does not establish normality, label completeness or access permission.
+研究问题：在不向模型提供留出缺陷类别训练标签或测试示例的条件下，能否在完整焊缝射线原片的复杂正常背景中定位未知缺陷实例，并控制每张原片的误报，同时保持已知类别检测能力？
 
-## Entry points
-- `python scripts/inventory.py --root "$WELD_DATA_ROOT" --out data/private/inventory.csv`
-- `python scripts/environment_report.py --out runs/environment.json`
-- Paper template path: pending user choice in a separate local/private repository. No paper template is included in this public repository.
-- Meeting documents, literature tables and paper materials are managed outside this public repository per the user's preference.
-- Real image training and inference are NOT_IMPLEMENTED. Do not describe inventory tools as a trained detector.
+拟检验假设：
+1. 固定候选预算下，类别无关候选路径可能提高小尺寸、低对比未知缺陷的覆盖。
+2. 背景条件化正常建模可能优于全局正常原型、简单背景划分和困难负样本基线。
+3. 分开进行正常/异常判断与已知/未知拒识，可能改善未知召回和误报之间的权衡。
 
-## Experimental protocol
-- Group by physical workpiece/weld before cropping, keeping repeated views together.
-- Hold out whole defect families, including directional synonyms, from training and model selection.
-- Exclude training images containing held-out defects. Do not reuse historical weights trained on the held-out family.
-- Keep incomplete, ambiguous and other-defect annotations under expert review; never silently label them normal.
-- Calibrate alert thresholds only on verified complete negative validation images; report realized test FP/image separately.
-- Test context must come from an available predictor or metadata. Expert test context is an oracle-only experiment.
-- Report candidate coverage, unknown recall, known mAP, false alarms and cluster confidence intervals.
-- Test labels are evaluation-only. Synthetic output is never a real experimental result.
+以上是待证伪假设，不能写成已有发现。真实实验开始前须冻结留出类别、数据角色、候选预算、阈值选择方式、主要终点和统计方法。
 
-## Review
-Validate scripts with small fixtures. Compile the actual LaTeX source. Record source and verification scope for references. Do not invent measurements.
+## 数据路径与安全
+
+- 通过环境变量 `WELD_DATA_ROOT` 指定受控机器上的数据根目录；真实路径不写入代码、公开配置或提交记录。
+- `data/raw/`：获授权的原始射线图像。
+- `data/annotations/`：专家标注及仲裁版本。
+- `data/metadata/`：匿名工件、焊缝、原片、视图、来源和设备关联信息。
+- `data/manifests/`：训练、验证、测试和外部设备角色清单。
+- 公开仓库不得提交原图、标注文件、含内部身份的清单、检测报告、模型权重或凭据。
+- 缺少缺陷标注不代表正常；只有完整审读并确认的原片可用于完整阴性校准。
+- 图像、裁块、重拍和增强视图必须继承所属物理工件/焊缝的划分。
+- 每轮留出整个缺陷家族及方向性同义标签；含留出缺陷的训练原片应按严格协议排除。
+- 专家测试标签只交独立评估器，不参与候选、阈值、上下文特征或模型选择。
+
+## 代码入口
+
+- `python scripts/validate_manifest.py <csv>`：检查清单必需字段、图像ID唯一性及工件/焊缝跨集合泄漏。
+- 类别无关候选生成、真实图像特征提取、模型训练、推理和正式评估：尚未实现。
+
+数据清单至少包含：`image_id,specimen_id,weld_id,split,annotation_status`。允许的`split`值为`train,val,test,external_test`。若一张图关联多个焊缝，应在分组表中保存完整关联并确保所有相连样本处于同一划分。
+
+## 配置、结果与论文材料
+
+- 公开配置模板：`config/experiment.example.json`；本地配置与真实数据路径不得提交。
+- 运行结果和日志保存在本地`runs/`，默认由Git忽略。
+- LaTeX论文正文、文献表、论文PDF、周计划与相关工作表由用户在独立的本地写作仓库维护；其模板位置为相邻的`weld-writing/paper/`，不属于本公开仓库。
+- 每项真实实验记录代码提交哈希、数据清单版本、配置、随机种子、软件环境和运行命令。
+- 只报告真实运行获得的结果；合成软件检查不得作为工业性能证据。
+
+## 开发约定
+
+- Python脚本须可通过命令行运行，并说明输入、输出和是否读取真值。
+- 修改数据划分或主要指标时，记录原因并在查看锁定测试标签前完成。
+- 评估至少报告候选覆盖、固定验证误报工作点下的未知实例召回、实际测试误报/原片、已知类性能及按物理焊缝聚类的不确定区间。
