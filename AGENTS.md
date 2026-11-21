@@ -12,7 +12,8 @@ Study open-set weld defect instance localization under complex normal background
 ## Entry points
 - `python scripts/inventory.py --root "$WELD_DATA_ROOT" --out data/private/inventory.csv`
 - `python scripts/environment_report.py --out runs/environment.json`
-- Paper: `paper/main.tex`; bibliography: `paper/references.bib`; build from `paper/` with XeLaTeX, BibTeX, XeLaTeX twice.
+- Paper template path: pending user choice in a separate local/private repository. No paper template is included in this public repository.
+- Meeting documents, literature tables and paper materials are managed outside this public repository per the user's preference.
 - Real image training and inference are NOT_IMPLEMENTED. Do not describe inventory tools as a trained detector.
 
 ## Experimental protocol

@@ -17,3 +17,8 @@ paper/*.blg
 paper/*.log
 paper/*.out
 paper/*.toc
+
+# Documents and paper materials stay outside this public repository.
+/docs/
+/paper/
+/meeting_materials/
