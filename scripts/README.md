@@ -1,15 +1,18 @@
-# Code entry points
+# 代码入口、依赖关系与状态
 
-## Implemented
+以下入口是论文研究流程的代码规划。只有`validate_manifest.py`当前可运行；带“待实现”的脚本不会训练或评估模型。先实现数据契约和小型受控样例，再接入真实数据。
 
-- `validate_manifest.py`: standard-library CSV check for required columns, unique image IDs, supported split names and specimen/weld leakage.
+| 顺序 | 脚本 | 输入 | 输出 | 状态 |
+|---|---|---|---|---|
+| 1 | `validate_manifest.py` | CSV清单 | 字段/唯一ID/分组泄漏检查 | 已实现 |
+| 2 | `prepare_data.py` | 授权图像、标注、元数据 | 匿名化索引、标签映射、质量问题清单 | 待实现 |
+| 3 | `make_splits.py` | 审核索引、留出类别家族 | 工件/焊缝分组的train/val/test清单 | 待实现 |
+| 4 | `generate_proposals.py` | 完整原片、候选配置 | 原片坐标候选、候选预算和GT覆盖统计 | 待实现 |
+| 5 | `train_detector.py` | 允许的已知类训练数据 | 闭集检测模型、验证预测和权重哈希 | 待实现 |
+| 6 | `train_normality.py` | 正常/困难正常图和允许已知异常 | 纯异常、全局正常、背景条件基线 | 待实现 |
+| 7 | `calibrate_threshold.py` | 完整阴性验证原片预测 | 冻结阈值及验证FP/原片记录 | 待实现 |
+| 8 | `evaluate_open_set.py` | 冻结预测、评估专用真值 | 未知实例召回、误报、已知类指标 | 待实现 |
+| 9 | `bootstrap_ci.py` | 按原片/焊缝汇总的配对结果 | 簇级置信区间和方法差值 | 待实现 |
+| 10 | `summarize_results.py` | 锁定评估输出 | 论文表格、失败案例索引和运行摘要 | 待实现 |
 
-## Planned, not implemented
-
-1. Image reader and class-agnostic proposal generator with proposal-recall reporting.
-2. Frozen-feature baseline for closed-set detection and normal-only anomaly localization.
-3. Global-normal and context-conditioned normality methods.
-4. Independent unknown rejection and one-to-one IoU evaluation.
-5. Clustered confidence intervals and reproducibility reports.
-
-Do not report performance until these components run on audited, authorized real data.
+建议建立共享接口：所有候选框使用完整原片坐标；推理程序看不到`annotation_status`、测试真值或人为的测试场景标签。不同方法应固定图像预处理、候选预算、阈值规则和测试实例匹配方式。

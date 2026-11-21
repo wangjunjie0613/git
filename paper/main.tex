@@ -1,0 +1,76 @@
+% !TeX program = xelatex
+% Build with LaTeX Workshop (XeLaTeX) or:
+% xelatex main.tex -> bibtex main -> xelatex main.tex -> xelatex main.tex
+\documentclass[UTF8,a4paper,12pt]{ctexart}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue]{hyperref}
+
+\title{面向复杂正常背景的开放集焊缝缺陷实例定位}
+\author{作者与单位待填写}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent\textbf{问题：}完整焊缝射线图中的复杂正常结构可能产生误报，闭集模型难以处理训练未见的缺陷类别。\\
+\textbf{数据：}拟使用按物理焊缝可追溯的射线原片；最终样本范围与标签完整性待审核。\\
+\textbf{方法：}拟研究类别无关候选、背景条件化正常建模和已知/未知拒识。\\
+\textbf{预期指标：}在冻结验证误报预算下评价未知实例召回，并报告实际测试误报/原片、已知类性能与候选覆盖。\\
+\textbf{状态：}本文为骨架，尚无真实实验结果；结果和结论待实测后填写。
+\end{abstract}
+
+\noindent\textbf{关键词：}焊缝射线检测；开放集识别；异常定位；复杂正常背景
+
+\section{引言}
+说明应用背景、研究问题、任务定义和由真实结果支持的贡献。
+
+\section{相关工作}
+综述焊缝射线缺陷检测、工业异常定位、开放集检测和背景建模。PatchCore是正常图像特征记忆库异常定位的代表性基础方法之一\citep{roth2022patchcore}。
+
+\section{数据与实验协议}
+说明数据授权与来源、类别家族映射、专家标注、完整正常片审阅、按物理工件/焊缝分组的留类划分及防泄漏规则。
+
+\section{方法}
+描述类别无关候选生成、区域特征、背景条件化正常分布、异常判定与未知拒识。
+
+\begin{figure}[htbp]
+\centering
+\fbox{\parbox[c][3.2cm][c]{0.86\linewidth}{\centering
+完整原片 $\rightarrow$ 类别无关候选 $\rightarrow$ 区域特征\\[0.5em]
+可用背景条件 $\rightarrow$ 正常/异常评分 $\rightarrow$ 已知/未知决策\\[0.5em]
+原片坐标还原与实例级评估}}
+\caption{研究流程占位图，后续替换为经实验核实的系统图。}
+\label{fig:framework}
+\end{figure}
+
+\section{实验设计}
+描述公平基线、候选预算、阈值冻结、指标、消融和簇级统计。
+
+\section{结果}
+\textbf{待真实实验完成后填写。} 不能用模拟软件检查、预期目标或计划数值替代实测结果。
+
+\begin{table}[htbp]
+\centering
+\caption{主要结果表占位}
+\begin{tabular}{lccc}
+\toprule
+方法 & 未知实例召回 & 实际误报/原片 & 已知类mAP \\
+\midrule
+全局正常基线 & 待实测 & 待实测 & 待实测 \\
+背景条件方法 & 待实测 & 待实测 & 待实测 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{讨论}
+分析主要发现、失败案例、数据偏差、外部泛化和研究限制。
+
+\section{结论}
+只总结当前真实实验所支持的结论。
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+\end{document}

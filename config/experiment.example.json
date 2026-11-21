@@ -3,14 +3,14 @@
   "status": "SCAFFOLD_NOT_RUN",
   "data_root_env": "WELD_DATA_ROOT",
   "modality": "DR_SD",
-  "group_unit": ["specimen_id", "weld_id"],
-  "heldout_family": "to_be_frozen_after_label_audit",
-  "strict_exclude_heldout_images_from_training": true,
+  "group_keys": ["specimen_id", "weld_id"],
+  "heldout_defect_family": "freeze_after_expert_label_audit",
+  "strictly_exclude_heldout_images_from_train": true,
   "candidate_budgets_per_image": [50, 100, 200],
-  "validation_false_positive_targets_per_image": [0.1, 0.25, 0.5, 1.0],
-  "localization_iou_thresholds_to_report": [0.1, 0.3, 0.5],
+  "validation_fp_targets_per_complete_image": [0.1, 0.25, 0.5, 1.0],
+  "iou_thresholds_to_report": [0.1, 0.3, 0.5],
   "random_seeds": [17, 29, 43],
+  "primary_endpoint": "unknown_instance_recall_at_frozen_validation_fp_target",
   "candidate_model": "NOT_IMPLEMENTED",
-  "detector_model": "NOT_IMPLEMENTED",
-  "primary_endpoint": "unknown_instance_recall_at_frozen_validation_fp_budget"
+  "detector_model": "NOT_IMPLEMENTED"
 }

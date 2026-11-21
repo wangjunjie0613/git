@@ -1,4 +1,4 @@
-# Private/local data: never commit
+# Private data and identifiers
 /data/raw/**
 /data/annotations/**
 /data/metadata/**
@@ -7,14 +7,15 @@
 !/data/annotations/.gitkeep
 !/data/metadata/.gitkeep
 !/data/manifests/.gitkeep
+!/data/manifests/example.csv
 config/local*
 .env
 .env.*
 
-# Generated outputs and model artifacts
+# Local results and trained models
 /runs/
-/checkpoints/
 /outputs/
+/checkpoints/
 *.pt
 *.pth
 *.ckpt
@@ -28,13 +29,23 @@ config/local*
 *.jpg
 *.jpeg
 
-# Python
+# Python and editor files
 __pycache__/
 *.py[cod]
 .venv/
 venv/
 .pytest_cache/
-
-# Editors
 .vscode/
 .idea/
+
+# LaTeX generated files; keep source and bibliography
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+paper/*.toc
+paper/main.pdf
